@@ -30,7 +30,6 @@ function rgb2lab(img,callback){
 		//B
 		img_rgb[2].push(img[i+2]/255);
 	}
-	console.log(img_rgb);
 	for(var i = 0, n = img_rgb[0].length; i < n; i++){
 		//channel log-L
 		img_lms[0].push(Math.max(Math.log(r1[0][0]*img_rgb[0][i] + r1[0][1]*img_rgb[1][i] + r1[0][2]*img_rgb[2][i]),1e-25));
@@ -39,19 +38,14 @@ function rgb2lab(img,callback){
 		//Channel log-S
 		img_lms[2].push(Math.max(Math.log(r1[2][0]*img_rgb[0][i] + r1[2][1]*img_rgb[1][i] + r1[2][2]*img_rgb[2][i]),1e-25));
 		if(i%4000 == 0)
-		console.log("tolms",i);
 	}
-	console.log(img_lms);
 	//To CIE-Lab
 	for(var i = 0, n = img_lms[0].length; i < n; i++){
 		    img_lab[0].push(r2[0][0]*img_lms[0][i] + r2[0][1]*img_lms[1][i] + r2[0][2]*img_lms[2][i]);
 		    img_lab[1].push(r2[1][0]*img_lms[0][i] + r2[1][1]*img_lms[1][i] + r2[1][2]*img_lms[2][i]);
 		    img_lab[2].push(r2[2][0]*img_lms[0][i] + r2[2][1]*img_lms[1][i] + r2[2][2]*img_lms[2][i]);
 		if(i%4000 == 0)
-		console.log("tolab",i);
 	}
-	console.log(img_lms);
-	console.log(img_lab);
 	if(callback){
 		callback();
 	}
@@ -59,6 +53,7 @@ function rgb2lab(img,callback){
 }
 /*1 is source, 2 is target*/
 function mergeImg(img_lab1,img_lab2,callback,p){
+	console.log(img_lab1,img_lab2,"CALL merge");
 	var mean_imglab1 = [math.mean(img_lab1[0]),math.mean(img_lab1[1]),math.mean(img_lab1[2])];
 	var mean_imglab2 = [math.mean(img_lab2[0]),math.mean(img_lab2[1]),math.mean(img_lab2[2])];
 	var std_imglab1 = [math.std(img_lab1[0]),math.std(img_lab1[1]),math.std(img_lab1[2])];
