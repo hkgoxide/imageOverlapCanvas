@@ -127,9 +127,9 @@ function drawFile(img){
 	});
 	result = lab2rgb(merge(rgb2lab(pixsrc),rgb2lab(pix)));
 	// Draw the ImageData object.
-	}
-	srcImage.onload(){
+	};
+	srcImage.onload()= function(){
   		image.src=img;
-	}
+	};
   	srcImage.src = "source.jpg";
 }
