@@ -138,7 +138,7 @@ function drawFile(img){
 		    if(result){
 			imgd.data = result;
 			context.putImageData(imgd, x, y);
-			clearInterval(intervalID);
+			clearInterval(intervalID1);
 			return;
 		    }			
 		});
