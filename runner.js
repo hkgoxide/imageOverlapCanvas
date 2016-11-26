@@ -59,9 +59,9 @@ function mergeImg(img_lab1,img_lab2){
 	var std_imglab2 = [math.std(img_lab2[0]),math.std(img_lab2[1]),math.std(img_lab2[2])];
 	var img_result=[[],[],[]];
 	for (var i = 0, n = mean_imglab1[0].length; i < n; i++){
-		img_result[0].push(img_lab1[0][i]-mean_imglab1[0])*(std_imglab2[0]/std_imglab1[0])+mean_imglab2[0]);
-		img_result[1].push(img_lab1[1][i]-mean_imglab1[1])*(std_imglab2[1]/std_imglab1[1])+mean_imglab2[1]);
-		img_result[2].push(img_lab1[2][i]-mean_imglab1[2])*(std_imglab2[2]/std_imglab1[2])+mean_imglab2[2]);
+		img_result[0].push((img_lab1[0][i]-mean_imglab1[0])*(std_imglab2[0]/std_imglab1[0])+mean_imglab2[0]);
+		img_result[1].push((img_lab1[1][i]-mean_imglab1[1])*(std_imglab2[1]/std_imglab1[1])+mean_imglab2[1]);
+		img_result[2].push((img_lab1[2][i]-mean_imglab1[2])*(std_imglab2[2]/std_imglab1[2])+mean_imglab2[2]);
 	}
 	return img_result;
 }
