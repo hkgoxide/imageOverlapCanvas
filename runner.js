@@ -135,13 +135,14 @@ function drawFile(img){
 		var img1conv=undefined,img2conv=undefined;
 		var reslab = undefined;
 		var intervalID1 = setInterval(function(){
+			console.log(result,"result");
 		    if(result){
 			imgd.data = result;
 			context.putImageData(imgd, x, y);
 			clearInterval(intervalID1);
 			return;
 		    }			
-		});
+		},500);
 		var intervalID2 = setInterval(function(){
 			if(img1conv && img2conv){
 				reslab = mergeImg(img1conv,img2conv);
