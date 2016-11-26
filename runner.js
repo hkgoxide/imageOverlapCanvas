@@ -122,7 +122,7 @@ function drawFile(img){
 			imgd.data = result;
 			context.putImageData(imgd, x, y);
 			clearInterval(intervalID);
-			break;
+			return;
 		    }
 	});
 	result = lab2rgb(merge(rgb2lab(pixsrc),rgb2lab(pix)));
