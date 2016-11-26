@@ -37,6 +37,7 @@ function rgb2lab(img,callback){
 		img_lms[1].push(Math.max(Math.log(r1[1][0]*img_rgb[0][i] + r1[1][1]*img_rgb[1][i] + r1[1][2]*img_rgb[2][i]),1e-25));
 		//Channel log-S
 		img_lms[2].push(Math.max(Math.log(r1[2][0]*img_rgb[0][i] + r1[2][1]*img_rgb[1][i] + r1[2][2]*img_rgb[2][i]),1e-25));
+		console.log("tolms",i);
 	}
 	delete img_rgb;
 	//To CIE-Lab
@@ -44,6 +45,7 @@ function rgb2lab(img,callback){
 		    img_lab[0].push(r2[0][0]*img_lms[0][i] + r2[0][1]*img_lms[1][i] + r2[0][2]*img_lms[2][i]);
 		    img_lab[1].push(r2[1][0]*img_lms[0][i] + r2[1][1]*img_lms[1][i] + r2[1][2]*img_lms[2][i]);
 		    img_lab[2].push(r2[2][0]*img_lms[0][i] + r2[2][1]*img_lms[1][i] + r2[2][2]*img_lms[2][i]);
+		console.log("tolab",i);
 	}
 	if(callback){
 		callback();
@@ -62,6 +64,7 @@ function mergeImg(img_lab1,img_lab2){
 		img_result[0].push((img_lab1[0][i]-mean_imglab1[0])*(std_imglab2[0]/std_imglab1[0])+mean_imglab2[0]);
 		img_result[1].push((img_lab1[1][i]-mean_imglab1[1])*(std_imglab2[1]/std_imglab1[1])+mean_imglab2[1]);
 		img_result[2].push((img_lab1[2][i]-mean_imglab1[2])*(std_imglab2[2]/std_imglab1[2])+mean_imglab2[2]);
+		console.log("merge",i);
 	}
 	return img_result;
 }
@@ -76,17 +79,20 @@ function lab2rgb(img_lab,callback){
 		    img_lms[0].push(Math.exp(inv_r2[0][0]*img_lab[0][i] + inv_r2[0][1]*img_lab[1][i] + inv_r2[0][2]*img_lab[2][i]));
 		    img_lms[1].push(Math.exp(inv_r2[1][0]*img_lab[0][i] + inv_r2[1][1]*img_lab[1][i] + inv_r2[1][2]*img_lab[2][i]));
 		    img_lms[2].push(Math.exp(inv_r2[2][0]*img_lab[0][i] + inv_r2[2][1]*img_lab[1][i] + inv_r2[2][2]*img_lab[2][i]));
+		console.log(i,"tolms");
 	}
 	for(var i = 0, n = img_lms[0].length; i < n; i++){
 		    img_rgb[0].push(inv_r1[0][0]*img_lms[0][i] + inv_r1[0][1]*img_lms[1][i] + inv_r1[0][2]*img_lms[2][i]);
 		    img_rgb[1].push(inv_r1[1][0]*img_lms[0][i] + inv_r1[1][1]*img_lms[1][i] + inv_r1[1][2]*img_lms[2][i]);
 		    img_rgb[2].push(inv_r1[2][0]*img_lms[0][i] + inv_r1[2][1]*img_lms[1][i] + inv_r1[2][2]*img_lms[2][i]);
+		console.log(i,"torgb")
 	}
 	for(var i = 0,n=img_lms[0].length; i < n; i++){
 		pixd.push(Math.round(img_rgb[0][i]*255));
 		pixd.push(Math.round(img_rgb[1][i]*255));
 		pixd.push(Math.round(img_rgb[2][i]*255));
 		pixd.push(255);
+		console.log(i,"topix");
 	}
 	if(callback){
 		callback();
