@@ -24,14 +24,14 @@ function rgb2lab(img,callback){
 	var img_rgb = [[],[],[]];
 	for (var i=0,n=img.length; i < n; i += 4){
 		//R
-		img_rgb[0].push(img[i]);
+		img_rgb[0].push(img[i]/255);
 		//G
-		img_rgb[1].push(img[i+1]);
+		img_rgb[1].push(img[i+1]/255);
 		//B
-		img_rgb[2].push(img[i+2]);
+		img_rgb[2].push(img[i+2]/255);
 	}
 	console.log(img_rgb);
-	for(var i = 0, n = img.length; i < n; i += 4){
+	for(var i = 0, n = img_rgb[0].length; i < n; i++){
 		//channel log-L
 		img_lms[0].push(Math.max(Math.log(r1[0][0]*img_rgb[0][i] + r1[0][1]*img_rgb[1][i] + r1[0][2]*img_rgb[2][i]),1e-25));
 		//channel log-M
