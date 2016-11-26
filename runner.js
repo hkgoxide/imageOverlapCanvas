@@ -30,6 +30,7 @@ function rgb2lab(img,callback){
 		//B
 		img_rgb[2].push(img[i+2]/255);
 	}
+	console.log(img_rgb);
 	for(var i = 0, n = img.length; i < n; i += 4){
 		//channel log-L
 		img_lms[0].push(Math.max(Math.log(r1[0][0]*img_rgb[0][i] + r1[0][1]*img_rgb[1][i] + r1[0][2]*img_rgb[2][i]),1e-25));
@@ -41,7 +42,6 @@ function rgb2lab(img,callback){
 		console.log("tolms",i);
 	}
 	console.log(img_lms);
-	delete img_rgb;
 	//To CIE-Lab
 	for(var i = 0, n = img_lms[0].length; i < n; i++){
 		    img_lab[0].push(r2[0][0]*img_lms[0][i] + r2[0][1]*img_lms[1][i] + r2[0][2]*img_lms[2][i]);
@@ -55,7 +55,6 @@ function rgb2lab(img,callback){
 	if(callback){
 		callback();
 	}
-	delete img_lms;
 	return img_lab;
 }
 /*1 is source, 2 is target*/
