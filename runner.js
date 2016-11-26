@@ -125,7 +125,7 @@ function drawFile(img){
 			return;
 		    }
 	});
-	result = lab2rgb(merge(rgb2lab(pixsrc),rgb2lab(pix)));
+	result = lab2rgb(mergeImg(rgb2lab(pixsrc),rgb2lab(pix)));
 	// Draw the ImageData object.
 	};
 	srcImage.onload= function(){
