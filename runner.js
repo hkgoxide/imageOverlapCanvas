@@ -40,6 +40,7 @@ function rgb2lab(img,callback){
 		if(i%4000 == 0)
 		console.log("tolms",i);
 	}
+	console.log(img_lms);
 	delete img_rgb;
 	//To CIE-Lab
 	for(var i = 0, n = img_lms[0].length; i < n; i++){
@@ -49,6 +50,8 @@ function rgb2lab(img,callback){
 		if(i%4000 == 0)
 		console.log("tolab",i);
 	}
+	console.log(img_lms);
+	console.log(img_lab);
 	if(callback){
 		callback();
 	}
