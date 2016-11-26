@@ -123,8 +123,8 @@ function drawFile(img){
 		//Resize canvas to image size
 		context.canvas.width = image.width;
 		context.canvas.height = image.height;
-		srcContext.canvas.width = image.width;
-		srcContext.canvas.height = image.height;
+		srcContext.canvas.width = srcImage.width;
+		srcContext.canvas.height = srcImage.height;
 		//Edit the image
 		var x = 0, y = 0;
 		// Draw the image on canvas.
