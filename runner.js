@@ -56,7 +56,7 @@ function rgb2lab(img,callback){
 	return img_lab;
 }
 /*1 is source, 2 is target*/
-function mergeImg(img_lab1,img_lab2){
+function mergeImg(img_lab1,img_lab2,callback,p){
 	var mean_imglab1 = [math.mean(img_lab1[0]),math.mean(img_lab1[1]),math.mean(img_lab1[2])];
 	var mean_imglab2 = [math.mean(img_lab2[0]),math.mean(img_lab2[1]),math.mean(img_lab2[2])];
 	var std_imglab1 = [math.std(img_lab1[0]),math.std(img_lab1[1]),math.std(img_lab1[2])];
@@ -69,10 +69,13 @@ function mergeImg(img_lab1,img_lab2){
 		if(i%4000 == 0)
 		console.log("merge",i);
 	}
+	if(callback){
+		callback(p);
+	}
 	return img_result;
 }
 
-function lab2rgb(img_lab,callback){
+function lab2rgb(img_lab,callback,p){
 	var inv_r2 =[[0.5774,0.4082,0.7071],[0.5774,0.4082,-0.7071],[0.5774,-0.8165,0.0000]];
 	var inv_r1 =[[4.4687,-3.5887,0.1196],[-1.2197,2.3831,-0.1626],[0.0585,-0.2611,1.2057]];
 	var img_lms = [[],[],[]];
@@ -101,7 +104,7 @@ function lab2rgb(img_lab,callback){
 		console.log(i,"topix");
 	}
 	if(callback){
-		callback();
+		callback(p);
 	}
 	return pixd;
 }
@@ -129,15 +132,31 @@ function drawFile(img){
 		var pixsrc = srcimgd.data;
 		var pix = imgd.data;
 		var result = undefined;
-		var intervalID = setInterval(function(){
+		var img1conv=undefined,img2conv=undefined;
+		var reslab = undefined;
+		var intervalID1 = setInterval(function(){
 		    if(result){
 			imgd.data = result;
 			context.putImageData(imgd, x, y);
 			clearInterval(intervalID);
 			return;
-		    }
-	});
-	result = lab2rgb(mergeImg(rgb2lab(pixsrc),rgb2lab(pix)));
+		    }			
+		});
+		var intervalID2 = setInterval(function(){
+			if(img1conv && img2conv){
+				reslab = mergeImg(img1conv,img2conv);
+				clearInterval(intervalID2);
+			}
+		},500);
+		var intervalID3 = setInterval(function(){
+			if(reslab){
+				result = lab2rgb(reslab);
+				clearInterval(intervalID3);
+			}
+		},500);
+
+	img1conv = rgb2lab(pixsrc);
+	img2conv = rgb2lab(pix);
 	// Draw the ImageData object.
 	};
 	srcImage.onload= function(){
