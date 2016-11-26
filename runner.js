@@ -37,14 +37,14 @@ function rgb2lab(img,callback){
 		img_lms[1].push(Math.max(Math.log(r1[1][0]*img_rgb[0][i] + r1[1][1]*img_rgb[1][i] + r1[1][2]*img_rgb[2][i]),1e-25));
 		//Channel log-S
 		img_lms[2].push(Math.max(Math.log(r1[2][0]*img_rgb[0][i] + r1[2][1]*img_rgb[1][i] + r1[2][2]*img_rgb[2][i]),1e-25));
-		if(i%4000 == 0)
+		
 	}
 	//To CIE-Lab
 	for(var i = 0, n = img_lms[0].length; i < n; i++){
 		    img_lab[0].push(r2[0][0]*img_lms[0][i] + r2[0][1]*img_lms[1][i] + r2[0][2]*img_lms[2][i]);
 		    img_lab[1].push(r2[1][0]*img_lms[0][i] + r2[1][1]*img_lms[1][i] + r2[1][2]*img_lms[2][i]);
 		    img_lab[2].push(r2[2][0]*img_lms[0][i] + r2[2][1]*img_lms[1][i] + r2[2][2]*img_lms[2][i]);
-		if(i%4000 == 0)
+		
 	}
 	if(callback){
 		callback();
