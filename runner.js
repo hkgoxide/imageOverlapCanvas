@@ -24,11 +24,11 @@ function rgb2lab(img,callback){
 	var img_rgb = [[],[],[]];
 	for (var i=0,n=img.length; i < n; i += 4){
 		//R
-		img_rgb[0].push(img[i]/255);
+		img_rgb[0].push(img[i]);
 		//G
-		img_rgb[1].push(img[i+1]/255);
+		img_rgb[1].push(img[i+1]);
 		//B
-		img_rgb[2].push(img[i+2]/255);
+		img_rgb[2].push(img[i+2]);
 	}
 	console.log(img_rgb);
 	for(var i = 0, n = img.length; i < n; i += 4){
