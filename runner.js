@@ -74,7 +74,10 @@ function mergeImg(img_lab1,img_lab2,callback,p){
 	var mean_imglab2 = [math.mean(img_lab2[0]),math.mean(img_lab2[1]),math.mean(img_lab2[2])];
 	var std_imglab1 = [math.std(img_lab1[0]),math.std(img_lab1[1]),math.std(img_lab1[2])];
 	var std_imglab2 = [math.std(img_lab2[0]),math.std(img_lab2[1]),math.std(img_lab2[2])];
-	console.log(mean_imglab1,mean_imglab2,std_imglab1,std_imglab2);
+	console.log(mean_imglab1);
+	console.log(mean_imglab2);
+	console.log(std_imglab1);
+	console.log(std_imglab2);
 	var img_result=[[],[],[]];
 	for (var i = 0, n = img_lab1[0].length; i < n; i++){
 		img_result[0].push((img_lab1[0][i]-mean_imglab1[0])*(std_imglab2[0]/std_imglab1[0])+mean_imglab2[0]);
