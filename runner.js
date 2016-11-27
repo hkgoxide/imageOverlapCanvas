@@ -101,12 +101,12 @@ function lab2rgb(img_lab,callback,p){
 		    img_lms[2].push(Math.exp(inv_r2[2][0]*img_lab[0][i] + inv_r2[2][1]*img_lab[1][i] + inv_r2[2][2]*img_lab[2][i]));
 		if(i%4000 == 0)
 		console.log(i,"tolms");
-		if(isNaN(img_lms[0][i]))
+/*		if(isNaN(img_lms[0][i]))
 			console.log("tolms NAN",i,"0");
 		if(isNaN(img_lms[1][i]))
 			console.log("tolms NAN",i,"1");
 		if(isNaN(img_lms[2][i]))
-			console.log("tolms NAN",i,"2");
+			console.log("tolms NAN",i,"2");*/
 	}
 	for(var i = 0, n = img_lms[0].length; i < n; i++){
 		    img_rgb[0].push(inv_r1[0][0]*img_lms[0][i] + inv_r1[0][1]*img_lms[1][i] + inv_r1[0][2]*img_lms[2][i]);
