@@ -54,26 +54,27 @@ function rgb2lab(img,callback){
 /*1 is source, 2 is target*/
 function mergeImg(img_lab1,img_lab2,callback,p){
 	console.log(img_lab1,img_lab2,"CALL merge");
-	for(var i = 0; i < img_lab1[0].length; i++){
-		if(isNaN(img_lab1[0][i]))
-			console.log("src NAN",i,"0");
-		if(isNaN(img_lab1[1][i]))
-			console.log("src NAN",i,"1");
-		if(isNaN(img_lab1[2][i]))
-			console.log("src NAN",i,"2");
-	}
-	for(var i = 0; i < img_lab2[0].length; i++){
-		if(isNaN(img_lab2[0][i]))
-			console.log("tar NAN",i,"0");
-		if(isNaN(img_lab2[1][i]))
-			console.log("tar NAN",i,"1");
-		if(isNaN(img_lab2[2][i]))
-			console.log("tar NAN",i,"2");
-	}
+// 	for(var i = 0; i < img_lab1[0].length; i++){
+// 		if(isNaN(img_lab1[0][i]))
+// 			console.log("src NAN",i,"0");
+// 		if(isNaN(img_lab1[1][i]))
+// 			console.log("src NAN",i,"1");
+// 		if(isNaN(img_lab1[2][i]))
+// 			console.log("src NAN",i,"2");
+// 	}
+// 	for(var i = 0; i < img_lab2[0].length; i++){
+// 		if(isNaN(img_lab2[0][i]))
+// 			console.log("tar NAN",i,"0");
+// 		if(isNaN(img_lab2[1][i]))
+// 			console.log("tar NAN",i,"1");
+// 		if(isNaN(img_lab2[2][i]))
+// 			console.log("tar NAN",i,"2");
+// 	}
 	var mean_imglab1 = [math.mean(img_lab1[0]),math.mean(img_lab1[1]),math.mean(img_lab1[2])];
 	var mean_imglab2 = [math.mean(img_lab2[0]),math.mean(img_lab2[1]),math.mean(img_lab2[2])];
 	var std_imglab1 = [math.std(img_lab1[0]),math.std(img_lab1[1]),math.std(img_lab1[2])];
 	var std_imglab2 = [math.std(img_lab2[0]),math.std(img_lab2[1]),math.std(img_lab2[2])];
+	console.log(mean_imglab1,mean_imglab2,std_imglab1,std_imglab2);
 	var img_result=[[],[],[]];
 	for (var i = 0, n = img_lab1[0].length; i < n; i++){
 		img_result[0].push((img_lab1[0][i]-mean_imglab1[0])*(std_imglab2[0]/std_imglab1[0])+mean_imglab2[0]);
