@@ -24,11 +24,11 @@ function rgb2lab(img,callback){
 	var img_rgb = [[],[],[]];
 	for (var i=0,n=img.length; i < n; i += 4){
 		//R
-		img_rgb[0].push(img[i]/255);
+		img_rgb[0].push(img[i]);
 		//G
-		img_rgb[1].push(img[i+1]/255);
+		img_rgb[1].push(img[i+1]);
 		//B
-		img_rgb[2].push(img[i+2]/255);
+		img_rgb[2].push(img[i+2]);
 	}
 	for(var i = 0, n = img_rgb[0].length; i < n; i++){
 		//channel log-L
@@ -117,9 +117,9 @@ function lab2rgb(img_lab,callback,p){
 		console.log(i,"torgb")
 	}
 	for(var i = 0,n=img_lms[0].length; i < n; i++){
-		pixd.push(Math.round(img_rgb[0][i]*255));
-		pixd.push(Math.round(img_rgb[1][i]*255));
-		pixd.push(Math.round(img_rgb[2][i]*255));
+		pixd.push(Math.round(img_rgb[0][i]));
+		pixd.push(Math.round(img_rgb[1][i]));
+		pixd.push(Math.round(img_rgb[2][i]));
 		pixd.push(255);
 		if(i%4000 == 0)
 		console.log(i,"topix");
