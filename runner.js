@@ -32,11 +32,11 @@ function rgb2lab(img,callback){
 	}
 	for(var i = 0, n = img_rgb[0].length; i < n; i++){
 		//channel log-L
-		img_lms[0].push(Math.max(Math.log(r1[0][0]*img_rgb[0][i] + r1[0][1]*img_rgb[1][i] + r1[0][2]*img_rgb[2][i]),1e-25));
+		img_lms[0].push(Math.max(Math.log(r1[0][0]*img_rgb[0][i] + r1[0][1]*img_rgb[1][i] + r1[0][2]*img_rgb[2][i]),2.2204e-16));
 		//channel log-M
-		img_lms[1].push(Math.max(Math.log(r1[1][0]*img_rgb[0][i] + r1[1][1]*img_rgb[1][i] + r1[1][2]*img_rgb[2][i]),1e-25));
+		img_lms[1].push(Math.max(Math.log(r1[1][0]*img_rgb[0][i] + r1[1][1]*img_rgb[1][i] + r1[1][2]*img_rgb[2][i]),2.2204e-16));
 		//Channel log-S
-		img_lms[2].push(Math.max(Math.log(r1[2][0]*img_rgb[0][i] + r1[2][1]*img_rgb[1][i] + r1[2][2]*img_rgb[2][i]),1e-25));
+		img_lms[2].push(Math.max(Math.log(r1[2][0]*img_rgb[0][i] + r1[2][1]*img_rgb[1][i] + r1[2][2]*img_rgb[2][i]),2.2204e-16));
 		
 	}
 	//To CIE-Lab
